@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 class EventPage extends StatefulWidget {
   const EventPage({super.key});
 
@@ -28,12 +27,8 @@ class _EventPageState extends State<EventPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Event Page'),
-      ),
-      body: Center(
-          child: ListView.builder(
+    return Center(
+        child: ListView.builder(
             itemCount: events.length,
             itemBuilder: (context, index){
               final event = events[index];
@@ -46,12 +41,11 @@ class _EventPageState extends State<EventPage> {
                   leading: Image.asset("assets/images/$avatar.jpg"),
                   title: Text("$speaker"),
                   subtitle: Text("$subject"),
-                  trailing: Icon(Icons.more_vert),
+                  trailing: const Icon(Icons.more_vert),
                 ),
               );
             }
-          )
-      ),
+        )
     );
   }
 }
