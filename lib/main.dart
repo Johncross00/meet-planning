@@ -43,12 +43,18 @@ class _MyAppState extends State<MyApp> {
             const Text("Camera",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
           ][_currentIndex],
         ),
-        body: [
-          const HomePage(),
-          const EventPage(),
-          const AddEventPage(),
-          const CameraPage(),
-        ][_currentIndex],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              [
+                const HomePage(),
+                const EventPage(),
+                const AddEventPage(),
+                const CameraPage(),
+              ][_currentIndex],
+            ],
+          ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.orange,
             unselectedItemColor: Colors.grey,

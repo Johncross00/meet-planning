@@ -1,5 +1,6 @@
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
 
 class AddEventPage extends StatefulWidget {
   const AddEventPage({super.key});
@@ -32,18 +33,26 @@ class _AddEventPageState extends State<AddEventPage> {
             Container(
               margin: const EdgeInsets.only(bottom: 20),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
+                  border: GradientOutlineInputBorder(
+                    gradient: LinearGradient(colors: [Colors.orange, Colors.blue]),
+                    width: 2,
+                  ),
+                  focusedBorder: GradientOutlineInputBorder(
+                      gradient: LinearGradient(colors: [Colors.blue, Colors.orange]),
+                      width: 3
+                  ),
                   labelText: 'Title',
                   hintText: "Enter title",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50)
-
-                  ),
+                  // border: OutlineInputBorder(
+                  //   borderRadius: BorderRadius.circular(50)
+                  //
+                  // ),
                 ),
                 validator: (value) {
                   // if (value!.isEmpty) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a description';
+                    return 'Please enter a title 😒';
                   }
                   return null;
                 } ,
@@ -52,18 +61,26 @@ class _AddEventPageState extends State<AddEventPage> {
 
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 80),
+              margin: const EdgeInsets.only(bottom: 20),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
+                  border: GradientOutlineInputBorder(
+                    gradient: LinearGradient(colors: [Colors.orange, Colors.blue]),
+                    width: 2,
+                  ),
+                  focusedBorder: GradientOutlineInputBorder(
+                      gradient: LinearGradient(colors: [Colors.blue, Colors.orange]),
+                      width: 3
+                  ),
                   labelText: 'Description',
                   hintText: "Enter description",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
+                  // border: OutlineInputBorder(
+                  //   borderRadius: BorderRadius.circular(100),
+                  // ),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter a description';
+                    return 'Please enter a description 😒';
                   }
                   return null;
                 } ,
@@ -72,24 +89,27 @@ class _AddEventPageState extends State<AddEventPage> {
             ),
             Container(
               margin: const EdgeInsets.only(bottom: 20),
-              child: DropdownButton(
-                // borderRadius: BorderRadius.circular(10),
-                  items: const [
-                    DropdownMenuItem(value: 'talk', child: Text("Talk Show")),
-                    DropdownMenuItem(value: 'demo', child: Text("Demo Code")),
-                    DropdownMenuItem(value: 'partner', child: Text("Partner")),
-                  ],
-                  elevation: 50,
-                  value: selectedConfType,
-                  onChanged: (value)  {
-                    setState(() {
-                      selectedConfType = value!;
-                    });
-                  }
+              child: DropdownButtonFormField(
+                items: const [
+                  DropdownMenuItem(value: 'talk', child: Text("Talk Show")),
+                  DropdownMenuItem(value: 'demo', child: Text("Demo Code")),
+                  DropdownMenuItem(value: 'partner', child: Text("Partner")),
+                ],
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                elevation: 50,
+                value: selectedConfType,
+                onChanged: (value) {
+                  setState(() {
+                    selectedConfType = value!;
+                  });
+                },
               ),
             ),
+
             Container(
-              margin: EdgeInsets.only(bottom: 20),
+              margin: const EdgeInsets.only(bottom: 20),
               child: DateTimeFormField(
                 decoration: const InputDecoration(
                   hintStyle: TextStyle(color: Colors.black45),
@@ -102,7 +122,6 @@ class _AddEventPageState extends State<AddEventPage> {
                 autovalidateMode: AutovalidateMode.always,
                 validator: (e) => (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
                 onDateSelected: (DateTime value) {
-                  print(value);
                   setState(() {
                     selectedConfDate = value;
                   });
@@ -128,7 +147,6 @@ class _AddEventPageState extends State<AddEventPage> {
                           duration: const Duration(seconds: 2)),
                       );
                       FocusScope.of(context).requestFocus(FocusNode());
-                      print("title is $title and description is $description and conference type is $selectedConfType");
                     }
                   },
                   label: const Text("Send",
