@@ -33,6 +33,11 @@ class HomePage extends StatelessWidget {
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(const EdgeInsets.all(15)),
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(35)
+                  ),
+                ),
               ),
               onPressed: () {
                 Navigator.push(
@@ -43,10 +48,12 @@ class HomePage extends StatelessWidget {
               // child: Text("Afficher le planning",
               label: const Text("Show the planning",
                 style: TextStyle(
-                    fontSize: 20
+                  color: Colors.white,
+                    fontSize: 20,
                 ),
               ),
-              icon: const Icon(Icons.calendar_month),
+              icon: const Icon(Icons.calendar_month,
+              color: Colors.white,),
             )
           ],
         )

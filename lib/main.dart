@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meet/pages/add_event_page.dart';
 import 'package:meet/pages/event_page.dart';
 import 'package:meet/pages/home_page.dart';
+import 'package:meet/pages/camera_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -24,20 +26,28 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        // backgroundColor: Colors.blue,
         appBar: AppBar(
+          backgroundColor: Colors.blue,
           elevation: 10,
           title: [
-            const Text("Home"),
-            const Text("Planning"),
-            const Text("Event Adding"),
+            const Text("Home", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),),
+            const Text("Planning",  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),),
+            const Text("Event Adding",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
+            const Text("Camera",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
           ][_currentIndex],
         ),
         body: [
           const HomePage(),
           const EventPage(),
-          const AddEventPage()
+          const AddEventPage(),
+          const CameraPage(),
         ][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.orange,
@@ -62,6 +72,10 @@ class _MyAppState extends State<MyApp> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.add_alarm_sharp),
                 label: "Add Event",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.camera_alt),
+                label: "Start Meeting",
               ),
             ]
         ),
