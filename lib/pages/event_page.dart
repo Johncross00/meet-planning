@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 class EventPage extends StatefulWidget {
   const EventPage({super.key});
 
@@ -48,6 +49,8 @@ class _EventPageState extends State<EventPage> {
                   final event = events[index];
                   final avatar = event["avatar"].toString().toLowerCase();
                   final speaker = event["speaker"];
+                  final Timestamp timestamp = event["date"];
+                  final String date = DateFormat.yMd().add_jm().format(timestamp.toDate());
                   final subject = event["subject"];
 
                   return Card(
