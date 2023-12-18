@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
@@ -147,6 +148,16 @@ class _AddEventPageState extends State<AddEventPage> {
                           duration: const Duration(seconds: 2)),
                       );
                       FocusScope.of(context).requestFocus(FocusNode());
+                      
+                     CollectionReference eventsRef = FirebaseFirestore.instance.collection("Events");
+                     eventsRef.add({
+                       'speaker': title,
+                       // 'date': date,
+                       'subject': description,
+                       'avatar': 'germain',
+                       'type': selectedConfType
+
+                     });
                     }
                   },
                   label: const Text("Send",

@@ -3,8 +3,14 @@ import 'package:meet/pages/add_event_page.dart';
 import 'package:meet/pages/event_page.dart';
 import 'package:meet/pages/home_page.dart';
 import 'package:meet/pages/camera_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 class MyApp extends StatefulWidget {
@@ -43,17 +49,18 @@ class _MyAppState extends State<MyApp> {
             const Text("Camera",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
           ][_currentIndex],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              [
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SingleChildScrollView(
+              child: [
                 const HomePage(),
                 const EventPage(),
                 const AddEventPage(),
                 const CameraPage(),
               ][_currentIndex],
-            ],
-          ),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.orange,
