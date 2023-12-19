@@ -24,52 +24,39 @@ class _MyAppState extends State<MyApp> {
   int _currentIndex = 0;
 
   setCurrentIndex(int index) {
-    // setState(() {
-    //   _currentIndex = index;
-    // });
+
     setState (() =>_currentIndex = index);
   }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.blue,
           elevation: 10,
           title: [
             const Text("Home", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),),
-            const Text("Planning",  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),),
-            const Text("Event Adding",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
-            const Text("Camera",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
+            const Text("Plannning",  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),),
+            const Text("Add an Event",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
+            const Text("Meet",  style: TextStyle(color: Colors.white,  fontWeight: FontWeight.bold, fontSize: 30),),
           ][_currentIndex],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SingleChildScrollView(
-              child: [
-                const HomePage(),
-                const EventPage(),
-                const AddEventPage(),
-                const CameraPage(),
-              ][_currentIndex],
-            ),
-          ],
-        ),
+        body: [
+          const HomePage(),
+          const EventPage(),
+          const AddEventPage(),
+          const CameraPage(),
+        ][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.orange,
             unselectedItemColor: Colors.grey,
             currentIndex: _currentIndex,
             type: BottomNavigationBarType.fixed,
-            // onTap: (index) {
-            //   setCurrentIndex(index);
-            // },
             onTap: (index) => setCurrentIndex(index),
             iconSize: 30,
             elevation: 10,

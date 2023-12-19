@@ -13,8 +13,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image(image: AssetImage('assets/images/apple.jpg')),
-            //     Image.asset("assets/images/apple.jpg"),
             SvgPicture.asset(
                 ("assets/images/bread.svg")),
             const Text("Meetings ",
