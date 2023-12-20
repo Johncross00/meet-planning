@@ -14,10 +14,9 @@ class _AddEventPageState extends State<AddEventPage> {
   final _formkey = GlobalKey<FormState>();
   final eventTitleController = TextEditingController();
   final speakerNameController = TextEditingController();
-
   final descriptionController = TextEditingController();
-  String selectedConfType = 'talk';
-  DateTime selectedConfDate = DateTime.now();
+  String selectedEventType = 'talk';
+  DateTime selectedEventDate = DateTime.now();
   @override
   void dispose() {
     super.dispose();
@@ -151,10 +150,10 @@ class _AddEventPageState extends State<AddEventPage> {
                     )),
                   ),
                   elevation: 50,
-                  value: selectedConfType,
+                  value: selectedEventType,
                   onChanged: (value) {
                     setState(() {
-                      selectedConfType = value!;
+                      selectedEventType = value!;
                     });
                   },
                 ),
@@ -169,11 +168,6 @@ class _AddEventPageState extends State<AddEventPage> {
                           width: 2,
                       borderRadius: BorderRadius.circular(20)
                     ),
-                    // border: GradientOutlineInputBorder(
-                    //   borderRadius: BorderRadius.circular(50),
-                    //   gradient: const LinearGradient(
-                    //       colors: [Colors.orange, Colors.blue]),
-                    //   width: 2,
                     suffixIcon: const Icon(Icons.date_range),
                     labelText: 'Choose the date',
                   ),
@@ -183,7 +177,7 @@ class _AddEventPageState extends State<AddEventPage> {
                       (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
                   onDateSelected: (DateTime value) {
                     setState(() {
-                      selectedConfDate = value;
+                      selectedEventDate = value;
                     });
                   },
                 ),
@@ -203,7 +197,7 @@ class _AddEventPageState extends State<AddEventPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                               content: Text(
-                                  "Event in adding...($title/$description/$selectedConfType/$selectedConfDate"),
+                                  "Event in adding...($title/$description/$selectedEventType/$selectedEventDate"),
                               backgroundColor: Colors.blueGrey,
                               elevation: 25,
                               duration: const Duration(seconds: 2)),
@@ -214,10 +208,10 @@ class _AddEventPageState extends State<AddEventPage> {
                             FirebaseFirestore.instance.collection("Events");
                         eventsRef.add({
                           'speaker': title,
-                          // 'date': date,
+                          'date': selectedEventDate,
                           'subject': description,
                           'avatar': 'germain',
-                          'type': selectedConfType
+                          'type': selectedEventType
                         });
                       }
                     },
